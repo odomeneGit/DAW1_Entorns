@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="RA2 - Instal·lació, configuració i ús d'Eclipse com a entorn de desenvolupament Java.">
+  <title>RA2 · Entorns de desenvolupament</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html"><span class="brand-mark">&lt;/&gt;</span><span><strong>ENTORNS</strong><small>DE DESENVOLUPAMENT · DAW</small></span></a>
+    <div class="top-actions">
+      <button class="icon-btn" id="themeBtn" aria-label="Canviar tema">◐</button>
+      <button class="font-btn" id="fontDown" aria-label="Reduir mida del text">A−</button>
+      <button class="font-btn" id="fontUp" aria-label="Augmentar mida del text">A+</button>
+    </div>
+    <div class="topbar-title">RA2 · Entorns de desenvolupament</div>
+  </header>
+  <aside class="sidebar" id="sidebar">
+    <div class="course-title"><span class="eyebrow">M05 · UF1</span><h1>Entorns de<br>desenvolupament</h1><p>Instal·lació i ús d'Eclipse</p></div>
+    <nav class="main-nav" aria-label="Navegació principal">
+      <a class="nav-link" href="index.html">⌂ <span>Inici</span></a>
+      <div class="nav-heading">Resultats d'aprenentatge</div>
+      <a class="nav-link" href="ra1.html"><span class="ra-badge">RA1</span><span>Desenvolupament de programari</span></a>
+      <a class="nav-link active" href="ra2.html"><span class="ra-badge">RA2</span><span>Entorns de desenvolupament</span></a>
+      <div class="nav-heading">RA2 · Continguts</div>
+      <a class="nav-link section-link" href="#funcions"><span>01</span><span>Funcions d'un IDE</span></a>
+      <a class="nav-link section-link" href="#instal·lacio"><span>02</span><span>Entorn de treball</span></a>
+      <a class="nav-link section-link" href="#projectes"><span>03</span><span>Projecte Java i Maven</span></a>
+      <a class="nav-link section-link" href="#interficie"><span>04</span><span>Interfície d'Eclipse</span></a>
+      <a class="nav-link section-link" href="#edicio"><span>05</span><span>Edició de programes</span></a>
+      <a class="nav-link section-link" href="#depuracio"><span>06</span><span>Depuració</span></a>
+      <a class="nav-link section-link" href="#plugins"><span>07</span><span>Personalització i plugins</span></a>
+      <a class="nav-link section-link" href="#exportacio"><span>08</span><span>Exportació i automatització</span></a>
+      <a class="nav-link section-link" href="#resum"><span>09</span><span>Repàs</span></a>
+    </nav>
+    <div class="sidebar-footer"><span>RA2 · Entorns de desenvolupament</span><span>Eclipse · Java · JDK</span></div>
+  </aside>
+
+  <main class="main">
+    <section class="hero ra-hero">
+      <div>
+        <span class="pill">RA2 · INSTAL·LACIÓ I ÚS D'ENTORNS DE DESENVOLUPAMENT</span>
+        <h2>Un bon entorn<br><span>ens ajuda a programar millor.</span></h2>
+        <p class="hero-lead">Aprèn a preparar Eclipse, editar codi Java, depurar l'execució, personalitzar l'entorn i generar un fitxer executable a partir del projecte.</p>
+      </div>
+      <div class="hero-facts"><div><strong>IDE</strong><span>eines integrades</span></div><div><strong>F5–F8</strong><span>depuració</span></div><div><strong>.JAR</strong><span>exportació</span></div></div>
+    </section>
+
+    <div class="content-layout no-toc"><article class="content">
+      <section class="topic" id="funcions">
+        <div class="topic-head"><span class="topic-num">01</span><div><span class="eyebrow">CONCEPTE I FUNCIONS</span><h2>Què és un entorn integrat de desenvolupament?</h2></div></div>
+        <div class="callout definition"><strong>IDE · Integrated Development Environment</strong><p>És una aplicació que integra en un mateix entorn diverses eines per crear, editar, comprovar, executar i depurar programes.</p></div>
+        <p>Sense un IDE, podem escriure el codi amb un editor i utilitzar el terminal per compilar-lo i executar-lo. Un IDE agrupa moltes d'aquestes operacions i facilita el treball amb projectes que contenen diversos fitxers.</p>
+        <div class="two-col">
+          <div class="card"><h3>Editor de codi</h3><p>Permet escriure i modificar el codi, amb colors de sintaxi, autocompletat, cerca i ajuda contextual.</p></div>
+          <div class="card"><h3>Compilació i execució</h3><p>Permet compilar el programa, iniciar-lo i consultar els missatges que genera.</p></div>
+          <div class="card"><h3>Detecció d'errors</h3><p>Mostra errors i avisos que poden ajudar a localitzar problemes abans o durant l'execució.</p></div>
+          <div class="card"><h3>Depurador</h3><p>Permet aturar el programa en punts concrets, avançar pas a pas i observar els valors de les variables.</p></div>
+          <div class="card"><h3>Gestió del projecte</h3><p>Organitza fitxers, paquets, biblioteques i configuracions d'execució.</p></div>
+          <div class="card"><h3>Extensions i automatització</h3><p>Pot incorporar eines addicionals i automatitzar tasques repetitives.</p></div>
+        </div>
+        <div class="pipeline" aria-label="Cicle de treball amb un IDE"><div class="pipe-step active"><b>01</b><strong>Editar</strong><small>Escriure el codi</small></div><div class="pipe-arrow">→</div><div class="pipe-step"><b>02</b><strong>Compilar</strong><small>Comprovar i generar</small></div><div class="pipe-arrow">→</div><div class="pipe-step"><b>03</b><strong>Executar</strong><small>Provar el programa</small></div><div class="pipe-arrow">→</div><div class="pipe-step final"><b>04</b><strong>Depurar</strong><small>Investigar errors</small></div></div>
+        <div class="note"><strong>En el nostre projecte</strong><span>Utilitzarem Eclipse per continuar treballant amb el fitxer <code>Incidencia.java</code> de la PRAC_01. No començarem una aplicació nova.</span></div>
+      </section>
+
+      <section class="topic" id="instal·lacio">
+        <div class="topic-head"><span class="topic-num">02</span><div><span class="eyebrow">PREPARAR L'ENTORN</span><h2>Entorn de treball i workspace</h2></div></div>
+        <p>A classe treballarem amb <strong>Eclipse IDE for Java Developers · 2025-06 (4.36.0)</strong>. Als ordinadors del centre, Eclipse ja està instal·lat i preparat per començar les pràctiques; per tant, no cal seguir un procés d'instal·lació en aquesta teoria.</p>
+        <figure class="eclipse-screenshot"><img src="img/eclipse/eclipse-2025-06-about.png" alt="Finestra Acerca de Eclipse IDE que mostra Eclipse IDE for Java Developers, versió 2025-06 (4.36.0) i build 20250605-1316" loading="lazy"><figcaption>Captura real de la versió utilitzada com a referència: <strong>Help / Ayuda → About Eclipse IDE / Acerca de Eclipse IDE</strong>.</figcaption></figure>
+        <div class="two-col"><div class="card"><span class="tag">WORKSPACE</span><h3>Espai de treball</h3><p>És la carpeta que Eclipse utilitza per organitzar els projectes i desar preferències de l'entorn. Un workspace pot contenir diversos projectes.</p></div><div class="card"><span class="tag">PROJECTE</span><h3>Aplicació concreta</h3><p>Cada projecte té els seus fitxers i la seva configuració. En les captures de l'exemple, <code>ProjecteJava1</code> i <code>gestorIncidencies</code> són dos projectes independents.</p></div></div>
+        <figure class="eclipse-screenshot"><img src="img/eclipse/workspace-projectes.png" alt="Carpeta eclipse-workspace amb les carpetes gestorIncidencies i ProjecteJava1" loading="lazy"><figcaption>Un mateix workspace pot contenir diferents projectes. La carpeta del projecte és la que cal seleccionar quan es vol copiar o lliurar un projecte.</figcaption></figure>
+        <div class="note"><strong>Per al lliurament</strong><span>No cal conèixer de memòria la ruta del workspace. Per lliurar una pràctica, utilitzarem l'opció d'exportar el projecte a ZIP, explicada més endavant.</span></div>
+      </section>
+
+      <section class="topic" id="projectes">
+        <div class="topic-head"><span class="topic-num">03</span><div><span class="eyebrow">CREAR UN PROJECTE</span><h2>Projecte Java i projecte Maven</h2></div></div>
+        <p>Eclipse permet crear projectes Java de manera directa o treballar amb Maven. <strong>Un projecte Java d'Eclipse</strong> és l'opció més senzilla per començar; <strong>Maven</strong> és una eina de construcció que afegeix una estructura estàndard i gestiona dependències mitjançant el fitxer <code>pom.xml</code>.</p>
+        <div class="two-col"><div class="card"><span class="tag">PROJECTE JAVA</span><h3>Per començar</h3><ul><li>Configuració senzilla dins d'Eclipse.</li><li>Codi font habitualment a <code>src</code>.</li><li>Fitxers compilats a <code>bin</code>, segons la configuració.</li><li>Les biblioteques externes s'afegeixen manualment si cal.</li></ul></div><div class="card"><span class="tag">MAVEN</span><h3>Per gestionar projectes</h3><ul><li>Configuració central a <code>pom.xml</code>.</li><li>Estructura estàndard per al codi i les proves.</li><li>Gestió de dependències.</li><li>Automatització de compilació, proves i empaquetament.</li></ul></div></div>
+
+        <h3>Exemple 1. Crear un projecte Java</h3>
+        <p>Començarem amb un projecte Java senzill per practicar l'ús de l'IDE sense afegir encara la configuració de Maven.</p>
+        <ol><li>Obre <strong>Archivo → Nuevo → Proyecto Java</strong> (o <strong>File → New → Java Project</strong>, segons l'idioma).</li><li>A <strong>Project name</strong>, escriu <code>ProjecteJava1</code>.</li><li>Deixa la ubicació predeterminada del workspace si és correcta.</li><li>Selecciona l'entorn Java acordat a classe, per exemple <code>JavaSE-21</code> si està configurat.</li><li>Mantén l'estructura de carpetes de codi i sortida proposada per Eclipse.</li><li>Per a aquests primers exercicis, deixa desmarcada l'opció de crear <code>module-info.java</code>.</li><li>Prem <strong>Finish</strong>.</li></ol>
+        <figure class="eclipse-screenshot"><img src="img/eclipse/assistent-nou-projecte.png" alt="Menú contextual de l'Explorador de paquets d'Eclipse amb les opcions Nuevo, Proyecto Java i Maven Project" loading="lazy"><figcaption>Des del menú contextual, selecciona <strong>Nuevo → Proyecto Java</strong> per obrir l’assistent de creació.</figcaption></figure>
+        <h4>Camí de construcció (Build Path)</h4>
+        <p>Eclipse utilitza el <em>Build Path</em> per saber on trobar el codi font, les biblioteques i les classes necessàries per compilar el projecte.</p>
+        <figure class="eclipse-screenshot"><img src="img/eclipse/projecte-java-build-path.png" alt="Pantalla de configuració Java Build Path amb pestanyes Source, Projects, Libraries, Order and Export i Module Dependencies" loading="lazy"><figcaption>Al principi, mantén els valors predeterminats: <code>src</code> per al codi font i <code>bin</code> com a carpeta de sortida, si són els valors proposats.</figcaption></figure>
+        <div class="table-wrap"><table><thead><tr><th>Element</th><th>Funció</th></tr></thead><tbody><tr><td><code>src</code></td><td>Conté els fitxers de codi font, com ara <code>Principal.java</code>.</td></tr><tr><td><code>bin</code></td><td>Pot contenir els fitxers compilats <code>.class</code>.</td></tr><tr><td><strong>JRE System Library</strong></td><td>Biblioteques i entorn Java seleccionat per al projecte.</td></tr><tr><td><code>module-info.java</code></td><td>Descriu un mòdul Java. No el necessitem en aquests primers exercicis.</td></tr></tbody></table></div>
+        <h4>Crear i executar la classe principal</h4>
+        <ol><li>Fes clic amb el botó dret sobre <code>src</code> i tria <strong>Nuevo → Clase</strong>.</li><li>Escriu <code>Principal</code> com a nom de classe.</li><li>Marca l'opció per generar <code>public static void main(String[] args)</code>.</li><li>Prem <strong>Finish</strong> i escriu un missatge senzill.</li><li>Fes clic dret sobre la classe i selecciona <strong>Run As → Java Application</strong>.</li></ol>
+        <div class="code-window"><div class="code-window-head"><span>Principal.java</span><span>Primer programa</span></div><pre><code>public class Principal {
+    public static void main(String[] args) {
+        System.out.println("Hola, món!");
+    }
+}</code></pre></div>
+        <figure class="eclipse-screenshot"><img src="img/eclipse/projecte-java-classe-principal.png" alt="Classe Principal.java oberta a Eclipse amb el mètode main i un missatge de sortida" loading="lazy"><figcaption>Exemple de classe Java creada i oberta a l'editor d'Eclipse.</figcaption></figure>
+        <div class="note"><strong>Atenció amb els mòduls</strong><span>Si crees <code>module-info.java</code>, Java exigeix que les classes d'un mòdul amb nom estiguin dins d'un paquet amb nom. Per evitar aquest concepte addicional al principi, no crearem el fitxer de mòdul en aquest exemple.</span></div>
+
+        <h3>Exemple 2. Crear un projecte Maven</h3>
+        <p>Ara crearem un projecte Maven independent per al mateix context del <em>Gestor d'incidències del centre educatiu</em>. Això permet comparar la configuració del projecte Java amb la de Maven.</p>
+        <ol><li>Obre <strong>Archivo → Nuevo → Otro… → Maven → Maven Project</strong>. És preferible iniciar-lo des del menú superior per crear un projecte nou.</li><li>A la primera pantalla, marca <strong>Create a simple project (skip archetype selection)</strong>. Així ometem la selecció d'una plantilla (<em>arquetip</em>).</li><li>Deixa desmarcada <strong>Add project(s) to working set</strong>, perquè no necessitem agrupar projectes per a aquest exemple.</li><li>Marca <strong>Use default Workspace location</strong> si la ubicació que mostra Eclipse és la carpeta arrel correcta del workspace. Si no ho és, desmarca-la i selecciona la carpeta arrel amb <strong>Browse…</strong>; no triïs <code>src</code> ni un fitxer Java.</li><li>Prem <strong>Next</strong> i omple els camps de l'artefacte.</li></ol>
+        <figure class="eclipse-screenshot"><img src="img/eclipse/maven-assistent-ubicacio.png" alt="Primera pantalla de l'assistent New Maven Project amb Create a simple project i la ubicació del workspace" loading="lazy"><figcaption>Primera pantalla de l'assistent Maven. <em>Skip archetype selection</em> vol dir ometre la selecció d'una plantilla predefinida.</figcaption></figure>
+        <h4>Dades de l'artefacte</h4>
+        <p>Per al projecte de l'institut, utilitzarem el domini <code>thosicodina.cat</code> invertit com a convenció per al grup:</p>
+        <div class="table-wrap"><table><thead><tr><th>Camp</th><th>Valor de l'exemple</th><th>Què identifica?</th></tr></thead><tbody><tr><td><strong>Group Id</strong></td><td><code>cat.thosicodina</code></td><td>El grup o l'organització a què pertany el projecte. Es fa servir sovint el domini invertit.</td></tr><tr><td><strong>Artifact Id</strong></td><td><code>gestorIncidencies</code></td><td>El projecte concret dins del grup; forma part del nom de l'artefacte generat.</td></tr><tr><td><strong>Version</strong></td><td><code>0.0.1-SNAPSHOT</code></td><td>La versió. <code>SNAPSHOT</code> indica que és una versió en desenvolupament.</td></tr><tr><td><strong>Packaging</strong></td><td><code>jar</code></td><td>El tipus de paquet que es generarà.</td></tr><tr><td><strong>Name</strong></td><td><code>Gestor incidencies</code></td><td>Nom descriptiu del projecte.</td></tr><tr><td><strong>Description</strong></td><td><code>Gestor d'incidencies</code></td><td>Descripció breu del projecte.</td></tr></tbody></table></div>
+        <p>Deixa buits els camps de <strong>Parent Project</strong>, perquè estem creant un projecte independent, no un mòdul fill d'un altre projecte Maven. Després prem <strong>Finish</strong>.</p>
+        <figure class="eclipse-screenshot"><img src="img/eclipse/maven-configuracio-projecte.png" alt="Assistent Maven amb Group Id cat.thosicodina, Artifact Id gestorIncidencies, versió 0.0.1-SNAPSHOT i packaging jar" loading="lazy"><figcaption>Configuració utilitzada en l'exemple. Els valors de <code>Group Id</code> i <code>Artifact Id</code> identifiquen el projecte de manera conjunta amb la versió.</figcaption></figure>
+        <h4>Reconèixer l'estructura Maven</h4>
+        <figure class="eclipse-screenshot"><img src="img/eclipse/maven-estructura-projecte.png" alt="Projecte gestorIncidencies a Eclipse amb src/main/java, src/main/resources, src/test/java, src/test/resources, target i pom.xml" loading="lazy"><figcaption>Estructura que Eclipse mostra després de crear el projecte Maven. Les carpetes estàndard separen el codi de l'aplicació i el de les proves.</figcaption></figure>
+        <ul><li><code>src/main/java</code>: codi font principal de l'aplicació.</li><li><code>src/main/resources</code>: recursos que necessita l'aplicació.</li><li><code>src/test/java</code>: codi de les proves automatitzades.</li><li><code>src/test/resources</code>: recursos de les proves.</li><li><code>pom.xml</code>: configuració de Maven, identificació del projecte i dependències.</li><li><code>target</code>: carpeta de sortida que Maven genera durant la construcció.</li></ul>
+        <h4>Què conté el fitxer <code>pom.xml</code>?</h4>
+        <p>És el fitxer central de configuració de Maven. L'assistent hi desa les dades del projecte; més endavant hi podrem declarar dependències i altres opcions de construcció.</p>
+        <div class="code-window"><div class="code-window-head"><span>pom.xml</span><span>Fragment simplificat</span></div><pre><code>&lt;project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         https://maven.apache.org/xsd/maven-4.0.0.xsd"&gt;
+  &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+  &lt;groupId&gt;cat.thosicodina&lt;/groupId&gt;
+  &lt;artifactId&gt;gestorIncidencies&lt;/artifactId&gt;
+  &lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;
+  &lt;name&gt;Gestor incidencies&lt;/name&gt;
+  &lt;description&gt;Gestor d'incidencies&lt;/description&gt;
+&lt;/project&gt;</code></pre></div>
+        <p><strong>Group Id</strong> identifica el grup o l'organització; <strong>Artifact Id</strong> identifica el projecte concret; <strong>Version</strong> indica la versió. Maven combina aquestes dades per identificar els artefactes i gestionar dependències.</p>
+        <div class="callout"><strong>Configuració de Java</strong><p>La captura de l'estructura mostra <code>JavaSE-1.8</code>. És la configuració que tenia aquest projecte en crear-lo; no és una exigència de Maven. Per a les pràctiques, comprova que el projecte utilitza la versió de Java acordada a classe (per exemple, Java 21 si està configurada a Eclipse).</p></div>
+        <h3>Quines tasques pot automatitzar Maven?</h3>
+        <div class="two-col"><div class="card"><h3><code>mvn compile</code></h3><p>Compila el codi principal del projecte.</p></div><div class="card"><h3><code>mvn test</code></h3><p>Executa les proves configurades, si n'hi ha.</p></div><div class="card"><h3><code>mvn package</code></h3><p>Empaqueta el projecte en el format configurat, per exemple un JAR.</p></div><div class="card"><h3>Dependències</h3><p>Gestiona les biblioteques declarades al fitxer <code>pom.xml</code>.</p></div></div>
+        <h3>Quan triem cada opció?</h3>
+        <div class="table-wrap"><table><thead><tr><th>Situació</th><th>Opció recomanada</th><th>Per què?</th></tr></thead><tbody><tr><td>Primers exercicis de Java</td><td><strong>Projecte Java</strong></td><td>Menys configuració i menys conceptes nous.</td></tr><tr><td>Programa petit amb poques classes</td><td><strong>Projecte Java</strong></td><td>Permet centrar-se en la programació.</td></tr><tr><td>Cal afegir diverses biblioteques</td><td><strong>Maven</strong></td><td>Les dependències queden declarades i gestionades al projecte.</td></tr><tr><td>El projecte té proves automatitzades</td><td><strong>Maven</strong></td><td>Facilita executar-les dins del procés de construcció.</td></tr><tr><td>Treball en equip o projecte més gran</td><td><strong>Maven</strong></td><td>Ofereix estructura i configuració compartides.</td></tr></tbody></table></div>
+        <div class="callout"><strong>Idea clau</strong><p>Maven no és un llenguatge de programació ni substitueix Java o Eclipse. Per començar a programar i aprendre l'IDE, un projecte Java senzill és suficient. Maven és especialment útil quan necessitem una estructura comuna, dependències, proves i tasques de construcció automatitzades.</p></div>
+      </section>
+
+      <section class="topic" id="interficie">
+        <div class="topic-head"><span class="topic-num">04</span><div><span class="eyebrow">ORIENTAR-SE A L'IDE</span><h2>Les parts principals de la interfície</h2></div></div>
+        <p>Eclipse organitza les eines en vistes i perspectives. Una <strong>vista</strong> mostra informació concreta; una <strong>perspectiva</strong> és una distribució de vistes i editors pensada per a una tasca, com programar o depurar.</p>
+        <figure class="eclipse-screenshot"><img src="img/eclipse/interficie-eclipse-completa.png" alt="Captura real d'Eclipse amb Explorador de paquets, editor Java, vista Esquema i pestanyes Problemas, Javadoc, Declaración i Consola" loading="lazy"><figcaption>Interfície real d'Eclipse utilitzada a classe. La distribució de les vistes pot variar segons la perspectiva i les preferències.</figcaption></figure>
+        <div class="table-wrap"><table><thead><tr><th>Vista o element</th><th>Ús habitual</th><th>Per a què serveix?</th></tr></thead><tbody><tr><td><strong>Barra de menús</strong></td><td>Habitual</td><td>Accedir a les funcions d'Eclipse, com crear projectes, executar programes o mostrar vistes.</td></tr><tr><td><strong>Barra d'eines</strong></td><td>Habitual</td><td>Accedir ràpidament a accions com desar, executar i depurar.</td></tr><tr><td><strong>Explorador de paquets (Package Explorer)</strong></td><td>Habitual</td><td>Explorar projectes, paquets, classes, fitxers i biblioteques.</td></tr><tr><td><strong>Editor de codi</strong></td><td>Constant</td><td>Escriure i modificar el codi font.</td></tr><tr><td><strong>Consola (Console)</strong></td><td>Habitual</td><td>Veure la sortida del programa i els missatges d'execució.</td></tr><tr><td><strong>Problemes (Problems)</strong></td><td>Habitual</td><td>Consultar errors i avisos detectats per l'entorn.</td></tr><tr><td><strong>Esquema (Outline)</strong></td><td>Complementari</td><td>Veure la llista de mètodes i altres elements del fitxer actual.</td></tr><tr><td><strong>Javadoc i Declaració</strong></td><td>Segons la necessitat</td><td>Consultar documentació i informació sobre elements del codi.</td></tr><tr><td><strong>Vistes de depuració (Debug i Variables)</strong></td><td>En depurar</td><td>Controlar l'execució i observar els valors de les variables quan el programa està aturat.</td></tr><tr><td><strong>Lista de tareas (Task List)</strong></td><td>No essencial al principi</td><td>Gestionar tasques i integracions de seguiment del treball.</td></tr></tbody></table></div>
+        <div class="note"><strong>Recuperar una vista tancada</strong><span>Obre <strong>Ventana → Mostrar vista</strong> (Window → Show View) i selecciona la vista que necessites, per exemple Consola o Problemas. Si no apareix a la llista, consulta l'opció <strong>Otro…</strong>.</span></div>
+        <div class="note"><strong>Recuperar la distribució de les finestres</strong><span>Si has mogut o tancat diverses vistes i vols tornar a la distribució inicial de la perspectiva actual, selecciona <strong>Ventana → Perspectiva → Restablecer perspectiva…</strong> (Window → Perspective → Reset Perspective). Confirma l'acció quan Eclipse ho demani.</span></div>
+        <p class="caption-note">No cal memoritzar totes les vistes. Al principi, centra't en l'Explorador de paquets, l'editor, la Consola i Problemas. Les vistes es poden moure, tancar i recuperar.</p>
+      </section>
+
+      <section class="topic" id="edicio">
+        <div class="topic-head"><span class="topic-num">05</span><div><span class="eyebrow">EDITAR AMB EFICIÈNCIA</span><h2>Eines d'edició de programes</h2></div></div>
+        <p>L'editor d'Eclipse no és només un lloc on escriure text. Proporciona funcions per entendre el codi, detectar problemes i fer canvis amb més seguretat.</p>
+        <div class="two-col"><div class="card"><h3>Ressaltat de sintaxi</h3><p>Utilitza colors per distingir paraules reservades, cadenes de text, comentaris i altres elements del codi.</p></div><div class="card"><h3>Content Assist</h3><p>Mostra suggeriments de codi mentre escrius. La drecera habitual és <kbd>Ctrl</kbd> + <kbd>Espai</kbd>.</p></div><div class="card"><h3>Quick Fix</h3><p>Proposa possibles solucions per a determinats errors. La drecera habitual és <kbd>Ctrl</kbd> + <kbd>1</kbd>.</p></div><div class="card"><h3>Format del codi</h3><p>Aplica les regles de format configurades per mantenir la indentació i les línies consistents. Drecera habitual: <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>F</kbd>.</p></div><div class="card"><h3>Organitzar imports</h3><p>Ajuda a afegir o eliminar declaracions <code>import</code> innecessàries. Drecera habitual: <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>O</kbd>.</p></div><div class="card"><h3>Refactorització bàsica</h3><p>Permet fer canvis estructurals assistits, com canviar el nom d'una variable i actualitzar-ne les referències.</p></div></div>
+        <h3>Personalitzar els colors del codi</h3>
+        <p>Pots adaptar el ressaltat de sintaxi als teus gustos sense canviar el tema general de l'entorn:</p>
+        <ol><li>Obre <strong>Ventana → Preferencias</strong> (Window → Preferences).</li><li>Ves a <strong>Java → Editor → Syntax Coloring</strong> (en algunes traduccions, «Coloreado de sintaxis»).</li><li>Selecciona l'element que vols personalitzar, com ara paraules clau, cadenes de text, comentaris o nombres.</li><li>Canvia el color i, quan estigui disponible, l'estil de la lletra.</li><li>Prem <strong>Aplicar y cerrar</strong>.</li></ol>
+        <div class="note"><strong>Color del codi o tema?</strong><span>El ressaltat de sintaxi modifica el color de categories concretes del codi. El tema general modifica l'aparença de més parts de la interfície, com el fons de l'editor.</span></div>
+        <h3>Content Assist: suggeriments mentre escrius</h3>
+        <p>Escriu una part d'un nom al codi i prem <kbd>Ctrl</kbd> + <kbd>Espai</kbd>. Eclipse mostra propostes de classes, mètodes i altres elements disponibles. Selecciona una proposta per consultar-ne la informació i completar el codi.</p>
+        <figure class="eclipse-screenshot"><img src="img/eclipse/content-assist.png" alt="Eclipse mostra suggeriments de Content Assist després d'escriure Sy al codi Java" loading="lazy"><figcaption>Content Assist: en escriure <code>Sy</code>, Eclipse proposa elements com <code>System</code> i mostra informació sobre l'element seleccionat.</figcaption></figure>
+        <h3>Quick Fix: possibles solucions a un problema</h3>
+        <p>Quan Eclipse detecta un problema, situa el cursor a la línia marcada i prem <kbd>Ctrl</kbd> + <kbd>1</kbd>. Si hi ha solucions disponibles, apareix una llista d'accions que poden corregir el problema o ajudar-te a continuar.</p>
+        <figure class="eclipse-screenshot"><img src="img/eclipse/quick-fix.png" alt="Eclipse mostra les opcions Quick Fix per a una assignació a una variable a no declarada" loading="lazy"><figcaption>Quick Fix: com que la variable <code>a</code> no s'ha declarat abans de l'assignació <code>a = 7;</code>, Eclipse proposa accions com crear una variable local o un camp.</figcaption></figure>
+        <div class="callout"><strong>Important</strong><p>Content Assist i Quick Fix són ajudes, no substitueixen la comprensió del codi. Llegeix les propostes i comprova què canviarà abans d'acceptar-les.</p></div>
+        <div class="callout"><strong>Detecció d'errors</strong><p>Eclipse pot marcar errors mentre edites el codi. Això no garanteix que detecti tots els errors: els problemes de lògica poden aparèixer només quan s'executa el programa.</p></div>
+        <h3>Exemple: canvi de nom segur</h3><p>Si una variable s'anomena <code>titolIncidencia</code> i vols canviar-ne el nom, utilitza l'opció de refactorització de canvi de nom en lloc de substituir el text manualment. L'IDE pot actualitzar les referències que corresponen a aquella variable.</p>
+        <div class="note"><strong>Relació amb altres pràctiques</strong><span>Ara aprendrem a utilitzar aquestes eines. La millora sistemàtica de la qualitat i la refactorització del projecte es treballaran més endavant, a la PRAC_04.</span></div>
+      </section>
+
+      <section class="topic" id="depuracio">
+        <div class="topic-head"><span class="topic-num">06</span><div><span class="eyebrow">OBSERVAR L'EXECUCIÓ</span><h2>Depuració: breakpoints i variables</h2></div></div>
+        <div class="callout definition"><strong>Depurar (debugging)</strong><p>És examinar l'execució d'un programa per comprendre què està passant i localitzar l'origen d'un error.</p></div>
+        <h3>Què és un breakpoint?</h3><p>Un <strong>breakpoint</strong> o punt d'interrupció és una marca que col·loquem en una línia de codi. Quan el programa s'executa en mode depuració i arriba a aquella línia, l'execució s'atura perquè puguem inspeccionar l'estat del programa.</p>
+        <div class="debug-flow"><div><span>01</span><b>Posar el breakpoint</b><small>Fer clic al marge de la línia.</small></div><i>→</i><div><span>02</span><b>Iniciar Debug</b><small>Executar el programa en mode depuració.</small></div><i>→</i><div><span>03</span><b>Inspeccionar</b><small>Observar la línia i les variables.</small></div><i>→</i><div><span>04</span><b>Continuar</b><small>Avançar pas a pas o reprendre l'execució.</small></div></div>
+        <h3>Exemple: seguim una variable</h3><p>Observa aquest fragment simplificat. El depurador ens permet aturar-nos abans de mostrar el títol i comprovar quin valor té la variable.</p>
+        <div class="code-window"><div class="code-window-head"><span>Incidencia.java</span><span>Exemple de depuració</span></div><pre><code><span class="line-no">1</span> String titol = <span class="code-string">"Projector no funciona"</span>;
+<span class="line-no">2</span> String aula = <span class="code-string">"Info 4"</span>;
+<span class="line-no">3</span> String prioritat = <span class="code-string">"Alta"</span>;
+<span class="line-no breakpoint-line">4</span> System.out.println(titol);
+<span class="line-no">5</span> System.out.println(aula);
+<span class="line-no">6</span> System.out.println(prioritat);</code></pre></div>
+        <p>Si el programa està aturat a la línia 4, a la vista <strong>Variables</strong> podràs veure els valors actuals de <code>titol</code>, <code>aula</code> i <code>prioritat</code> si aquestes variables estan dins de l'àmbit visible en aquell punt.</p>
+        <div class="table-wrap"><table><thead><tr><th>Ordre</th><th>Què fa?</th><th>Quan la utilitzem?</th></tr></thead><tbody><tr><td><strong>Resume</strong> · habitualment F8</td><td>Continua l'execució fins al següent breakpoint o fins al final.</td><td>Quan ja hem acabat d'inspeccionar aquell punt.</td></tr><tr><td><strong>Step Over</strong> · habitualment F6</td><td>Executa la línia actual i passa a la següent sense entrar dins del mètode cridat.</td><td>Per avançar línia a línia.</td></tr><tr><td><strong>Step Into</strong> · habitualment F5</td><td>Entra dins del mètode cridat, si és possible.</td><td>Quan volem inspeccionar què fa un mètode.</td></tr><tr><td><strong>Step Return</strong> · habitualment F7</td><td>Continua fins que el mètode actual retorna.</td><td>Quan volem sortir del mètode que estem inspeccionant.</td></tr><tr><td><strong>Terminate</strong></td><td>Finalitza la sessió de depuració.</td><td>Quan volem aturar completament l'execució.</td></tr></tbody></table></div>
+        <div class="interactive-box debugger-demo"><div><span class="eyebrow">MINI SIMULACIÓ</span><h3>Practica el seguiment de variables</h3><p>Avança per les instruccions i observa com canvien els valors.</p></div><div class="debug-sim-code"><code id="debugLine">String titol = "Projector no funciona";</code></div><div class="debug-state"><span>Estat</span><strong id="debugStatus">Preparat</strong><span>Variable <code>titol</code></span><strong id="debugValue">Sense assignar</strong></div><button class="btn btn-primary" id="debugNext">▶ Següent pas</button><button class="btn btn-ghost" id="debugReset">Reiniciar</button></div>
+        <div class="note"><strong>Recorda</strong><span>Un breakpoint no corregeix l'error: només atura l'execució en un punt concret perquè puguem observar el que passa. Cal interpretar els valors i decidir com solucionar el problema.</span></div>
+      </section>
+
+      <section class="topic" id="plugins">
+        <div class="topic-head"><span class="topic-num">07</span><div><span class="eyebrow">PERSONALITZACIÓ</span><h2>Preferències, plugins i extensions</h2></div></div>
+        <p>Podem adaptar Eclipse a la nostra manera de treballar i afegir-hi eines quan necessitem funcions que no formen part de la instal·lació inicial.</p>
+        <div class="two-col"><div class="card"><h3>Preferències</h3><p>Permeten ajustar temes, mida de lletra, colors, format del codi, versions de Java i altres comportaments de l'entorn.</p></div><div class="card"><h3>Plugins</h3><p>Són components que amplien Eclipse amb noves funcions o integracions. S'han de triar segons una necessitat concreta.</p></div></div>
+        <h3>Instal·lar un plugin</h3><ol><li>Obre <strong>Help → Eclipse Marketplace</strong>.</li><li>Cerca una eina relacionada amb la necessitat que vols resoldre.</li><li>Llegeix-ne la descripció, la compatibilitat i l'autor.</li><li>Selecciona la instal·lació i revisa els components que s'afegiran.</li><li>Accepta els termes quan correspongui i reinicia Eclipse si t'ho demana.</li><li>Comprova que la funció nova apareix i funciona.</li></ol>
+        <div class="callout"><strong>Exemple: treballar amb bases de dades</strong><p>Hi ha plugins i eines de l'ecosistema Eclipse que faciliten la connexió a bases de dades, l'exploració de taules i l'execució de consultes SQL. La disponibilitat concreta depèn de la versió d'Eclipse i dels connectors instal·lats. Una eina com DBeaver, en canvi, és una aplicació independent, no un plugin d'Eclipse.</p></div>
+        <div class="note"><strong>Bon criteri</strong><span>No instal·lis extensions només perquè existeixen. Comprova que són compatibles, que provenen d'una font fiable i que resolen una necessitat real. En aquesta pràctica no afegirem una base de dades al Gestor d'incidències.</span></div>
+        <h3>Actualitzacions</h3><p>Les actualitzacions poden corregir errors, millorar la seguretat o afegir compatibilitat. Utilitza les opcions d'actualització d'Eclipse i segueix les indicacions del professorat, especialment en equips de centre amb una configuració controlada.</p>
+      </section>
+
+      <section class="topic" id="exportacio">
+        <div class="topic-head"><span class="topic-num">08</span><div><span class="eyebrow">GENERAR I COMPARTIR</span><h2>Exportació, executables i automatització</h2></div></div>
+        <p>Durant el desenvolupament, Eclipse compila el codi Java i permet executar-lo des de l'entorn. També podem exportar una aplicació perquè es pugui executar fora de l'IDE.</p>
+        <div class="pipeline"><div class="pipe-step active"><b>01</b><strong>Incidencia.java</strong><small>Codi font</small></div><div class="pipe-arrow">→</div><div class="pipe-step"><b>02</b><strong>Compilació</strong><small>Genera .class</small></div><div class="pipe-arrow">→</div><div class="pipe-step"><b>03</b><strong>Exportació JAR</strong><small>Empaqueta classes i recursos</small></div><div class="pipe-arrow">→</div><div class="pipe-step final"><b>04</b><strong>java -jar</strong><small>Execució fora d'Eclipse</small></div></div>
+        <h3>Exportar i lliurar un projecte en ZIP</h3>
+        <p>Per lliurar una pràctica perquè el professorat en pugui revisar el codi i importar-la a Eclipse, no utilitzarem un JAR executable. Exportarem el projecte complet en un arxiu ZIP.</p>
+        <h4>Exportació des d'Eclipse</h4>
+        <ol><li>Fes clic amb el botó dret sobre el projecte al <strong>Package Explorer</strong> o <strong>Project Explorer</strong>.</li><li>Selecciona <strong>Export… → General → Archive File</strong>.</li><li>Selecciona els fitxers del projecte que cal lliurar i tria el format ZIP.</li><li>Indica el nom i la ubicació del fitxer, i prem <strong>Finish</strong>.</li><li>Lliura el ZIP a través de Moodle amb el nom indicat per a la pràctica.</li></ol>
+        <p>Inclou el codi font i els fitxers de configuració necessaris. Els fitxers compilats de <code>bin</code> normalment no cal lliurar-los, perquè es poden generar de nou. En un projecte Maven, inclou <code>pom.xml</code> i les carpetes de codi font i recursos.</p>
+        <h4>Importació per part del professorat</h4>
+        <ol><li>Selecciona <strong>File → Import… → General → Existing Projects into Workspace</strong>.</li><li>Marca <strong>Select archive file</strong> i selecciona el ZIP lliurat.</li><li>Selecciona el projecte detectat i prem <strong>Finish</strong>.</li><li>Comprova que el projecte es pot obrir, compilar i executar.</li></ol>
+        <div class="note"><strong>ZIP o JAR?</strong><span>El ZIP conserva l'estructura del projecte perquè es pugui revisar i importar. El Runnable JAR serveix per distribuir una aplicació executable fora d'Eclipse; no substitueix el lliurament del codi font.</span></div>
+        <h3>Què és un JAR?</h3><p>Un fitxer <code>.jar</code> és un arxiu que empaqueta classes Java i, si cal, altres recursos i metadades. Un <strong>Runnable JAR</strong> inclou la informació necessària per indicar quin punt d'entrada s'ha d'executar.</p>
+        <h3>Exportar un Runnable JAR des d'Eclipse</h3><ol><li>Executa el projecte per comprovar que funciona.</li><li>Obre <strong>File → Export</strong>.</li><li>Selecciona <strong>Java → Runnable JAR file</strong>, si l'opció està disponible.</li><li>Tria la configuració d'execució corresponent a la classe principal.</li><li>Selecciona la ubicació i el nom del fitxer de sortida.</li><li>Tria com s'han de gestionar les biblioteques necessàries segons les opcions disponibles.</li><li>Finalitza l'exportació i comprova que s'ha creat el fitxer.</li></ol>
+        <p>Per provar-lo des del terminal, situa't a la carpeta on s'ha exportat i executa:</p><div class="code-window"><div class="code-window-head"><span>Terminal d'Ubuntu</span><span>Execució</span></div><pre><code>java -jar GestorIncidencies.jar</code></pre></div>
+        <div class="callout"><strong>Important</strong><p>L'ordinador on s'executa el JAR necessita una versió compatible del runtime Java. A més, com que el nostre programa utilitza la consola per llegir dades, s'ha d'executar des d'un terminal i no simplement fent doble clic al fitxer.</p></div>
+        <h3>Eines i automatització</h3><div class="two-col"><div class="card"><h3>Automatització integrada</h3><p>Eclipse pot compilar automàticament quan es desa el codi, mostrar errors i avisos, organitzar imports i aplicar regles de format.</p></div><div class="card"><h3>Eines de construcció</h3><p>Eines com Maven o Gradle poden automatitzar la gestió de dependències, la compilació i l'empaquetament. Les estudiarem quan el projecte necessiti aquest nivell de configuració.</p></div></div>
+        <div class="note"><strong>Què hem de distingir?</strong><span>Executar des d'Eclipse és útil durant el desenvolupament. Exportar un JAR permet preparar una versió que es pugui executar fora de l'entorn, sempre que es compleixin els requisits necessaris.</span></div>
+      </section>
+
+      <section class="topic" id="resum">
+        <div class="topic-head"><span class="topic-num">09</span><div><span class="eyebrow">IDEES CLAU</span><h2>Repàs del RA2</h2></div></div>
+        <div class="checklist"><label><input type="checkbox"> Sé explicar què és un IDE i quines funcions integra.</label><label><input type="checkbox"> Distingeixo el JDK, la JVM i Eclipse.</label><label><input type="checkbox"> Sé què són el workspace i un projecte, i com es relacionen.</label><label><input type="checkbox"> Puc executar un programa Java des d'Eclipse.</label><label><input type="checkbox"> Sé recuperar una vista tancada i restablir una perspectiva.</label><label><input type="checkbox"> Sé personalitzar el ressaltat de sintaxi i utilitzar Content Assist i Quick Fix.</label><label><input type="checkbox"> Sé posar un breakpoint i iniciar una sessió de depuració.</label><label><input type="checkbox"> Puc avançar pas a pas i observar valors de variables.</label><label><input type="checkbox"> Distingeixo un Projecte Java d’Eclipse d’un projecte gestionat amb Maven.</label><label><input type="checkbox"> Sé per a què serveixen el fitxer pom.xml, les dependències i les ordres bàsiques de Maven.</label><label><input type="checkbox"> Sé què són els plugins i com es gestionen.</label><label><input type="checkbox"> Puc exportar un projecte en ZIP perquè el professorat l’importi, i distingeixo aquest lliurament d’un Runnable JAR.</label><label><input type="checkbox"> Identifico algunes tasques que Eclipse pot automatitzar.</label></div>
+        <div class="resources"><div class="resource-head"><span class="eyebrow">PER CONTINUAR APRENENT</span><h3>Documentació i recursos</h3></div><a href="https://marketplace.eclipse.org/" target="_blank" rel="noopener"><strong>Eclipse Marketplace</strong><span>Catàleg de plugins i eines complementàries.</span><b>↗</b></a><a href="https://help.eclipse.org/latest/index.jsp" target="_blank" rel="noopener"><strong>Eclipse Help</strong><span>Documentació oficial de l'entorn.</span><b>↗</b></a></div>
+      </section>
+      <footer class="site-footer"><span>M05 · Entorns de desenvolupament</span><span>RA2 · Instal·lació i ús d'entorns de desenvolupament</span></footer>
+    </article></div>
+  </main>
+  <script src="js/app.js"></script>
+  <script src="js/ra2.js"></script>
+</body>
+</html>

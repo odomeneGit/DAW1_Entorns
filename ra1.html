@@ -29,6 +29,8 @@
     </div>
     <nav class="main-nav" aria-label="Navegació principal">
       <a class="nav-link" href="index.html">⌂ <span>Inici</span></a>
+      <div class="nav-heading">Resultats d'aprenentatge</div>
+      <a class="nav-link" href="ra2.html"><span class="ra-badge">RA2</span><span>Entorns de desenvolupament</span></a>
       <div class="nav-heading">RA1 · Continguts</div>
       <a class="nav-link section-link" href="#programa"><span>01</span><span>Programa i codi</span></a>
       <a class="nav-link section-link" href="#compilacio"><span>02</span><span>Compilació i execució</span></a>
@@ -230,30 +232,6 @@
             <strong>Important</strong>
             <span>La comparació compilador/intèrpret és una simplificació útil per entendre el concepte. Els entorns moderns poden combinar diferents tècniques. Per exemple, els motors de JavaScript actuals poden compilar parts del codi durant l'execució amb tècniques com la compilació JIT.</span>
           </div>
-
-          <div class="subtopic">
-            <h3>OpenJDK, JDK i JVM</h3>
-            <p><strong>OpenJDK</strong> és una implementació de codi obert de la plataforma Java. Un <strong>JDK (Java Development Kit)</strong> proporciona les eines necessàries per desenvolupar aplicacions Java i els components necessaris per executar-les.</p>
-            <div class="two-col">
-              <div class="card"><span class="tag">JDK</span><h3>Java Development Kit</h3><p>Inclou el compilador <code>javac</code>, les eines de desenvolupament, les biblioteques de Java i la <strong>JVM</strong> necessària per executar els programes.</p></div>
-              <div class="card"><span class="tag">JVM</span><h3>Java Virtual Machine</h3><p>Executa el <strong>bytecode</strong> generat pel compilador de Java. Això permet executar una mateixa aplicació en diferents sistemes que disposin d'una JVM compatible.</p></div>
-            </div>
-            <div class="callout definition"><strong>Relació entre els components</strong><p><strong>JDK = eines de desenvolupament + JVM + biblioteques i components de Java.</strong> El compilador <code>javac</code> transforma el codi font en bytecode i la JVM executa aquest bytecode.</p></div>
-            <div class="pipeline">
-              <div class="pipe-step"><span>01</span><b>Codi font</b><code>Programa.java</code></div><div class="pipe-arrow">→</div>
-              <div class="pipe-step"><span>02</span><b>Compilació</b><code>javac</code></div><div class="pipe-arrow">→</div>
-              <div class="pipe-step"><span>03</span><b>Bytecode</b><code>Programa.class</code></div><div class="pipe-arrow">→</div>
-              <div class="pipe-step"><span>04</span><b>JVM</b><code>java Programa</code></div><div class="pipe-arrow">→</div>
-              <div class="pipe-step"><span>05</span><b>Execució</b><code>CPU</code></div>
-            </div>
-            <div class="subtopic"><h3>Comprovar Java en Ubuntu</h3><p>Des de la terminal podem comprovar si tenim disponible la JVM i el compilador del JDK:</p>
-              <div class="examples"><span>JVM / entorn d'execució</span><code>java -version</code></div>
-              <div class="examples"><span>Compilador del JDK</span><code>javac -version</code></div>
-              <p class="muted-text">Si <code>java -version</code> funciona, podem executar programes Java. Si també funciona <code>javac -version</code>, disposem del compilador necessari per desenvolupar i compilar codi Java.</p>
-            </div>
-            <div class="note"><strong>Precisió important</strong><span>En versions modernes de Java no hem d'entendre el model com tres instal·lacions independents «JDK → JRE → JVM». El JDK inclou la JVM i els components necessaris per al desenvolupament i l'execució. Les JVM modernes poden interpretar bytecode i utilitzar compilació <strong>JIT (Just-In-Time)</strong> per generar codi màquina durant l'execució.</span></div>
-          </div>
-
         </section>
 
         <section class="topic" id="llenguatges">

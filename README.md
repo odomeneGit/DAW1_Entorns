@@ -1,65 +1,16 @@
-# Entorns de desenvolupament · DAW
+# M05 · Entorns de desenvolupament — RA2
 
-Web docent en HTML + CSS + JavaScript per organitzar la teoria del mòdul **M05: Entorns de desenvolupament**.
+Teoria web sobre l'ús d'Eclipse IDE for Java Developers 2025-06 (4.36.0), amb captures reals de la configuració i dels exemples de projecte Java i Maven.
 
-## Estructura
+## Contingut
+- Funcions d'un IDE
+- Entorn de treball i workspace (sense instruccions d'instal·lació del sistema operatiu)
+- Creació guiada d'un projecte Java i d'un projecte Maven
+- Estructura, `pom.xml`, identificadors Maven i tasques bàsiques
+- Interfície real d’Eclipse, recuperació de vistes i restabliment de la perspectiva
+- Ressaltat de sintaxi, Content Assist i Quick Fix
+- Depuració
+- Personalització i plugins
+- Exportació d'un projecte en ZIP per lliurar-lo i importar-lo, exportació d'un Runnable JAR, automatització i repàs
 
-```text
-entorns-desenvolupament/
-├── index.html
-├── ra1.html
-├── img/
-│   └── cicle-vida-scrum.png
-├── css/
-│   └── styles.css
-├── js/
-│   └── app.js
-└── README.md
-```
-
-## Contingut actual
-
-- Inici del mòdul.
-- RA1: Desenvolupament de programari.
-- Espais preparats per a RA2, RA3, RA4, RA5 i RA6.
-
-## Funcionalitats
-
-- Disseny responsive.
-- Navegació lateral.
-- Cerca de continguts (`Ctrl/Cmd + K`).
-- Mode clar/fosc recordat amb `localStorage`.
-- Simulació visual del procés de compilació.
-- Imatge integrada del cicle de vida de Scrum dins del RA1.
-- Explicació ampliada dels paradigmes de programació amb exemples i comparativa.
-- Apartat de comparació entre compiladors i intèrprets.
-- Selecció de 4 tècniques/pràctiques àgils principals.
-- Blocs desplegables.
-- Checklist de repàs del RA1.
-- Enllaços a recursos externs.
-- Estils d'impressió.
-
-## Publicació a GitHub Pages
-
-1. Crea un repositori.
-2. Copia aquests fitxers mantenint l'estructura de carpetes.
-3. Fes `git add .`
-4. Fes `git commit -m "Afegim teoria RA1"`
-5. Fes `git push`
-6. Activa GitHub Pages des de les opcions del repositori.
-
-No necessita Node.js, npm ni cap servidor: és una web estàtica.
-
-## Ampliació futura
-
-Per afegir cada RA, es recomana mantenir:
-- una pàgina HTML pròpia per RA;
-- els mateixos estils;
-- la mateixa navegació;
-- una estructura de continguts basada en blocs curts, esquemes, taules, exemples i recursos.
-
-## Font docent
-
-El RA1 s'ha estructurat a partir de la presentació facilitada de **M05: Entorns de desenvolupament · UF1: Desenvolupament de programari**. S'han afegit alguns continguts d'ampliació clarament identificables dins la web (paradigmes, característiques de llenguatges, tècniques àgils i recursos externs).
-
-- Redisseny visual professional amb fons blanc i estil de documentació tècnica.
+Les captures dels assistents Java i Maven provenen de l'entorn real utilitzat per preparar l'exemple. Obre `index.html` per accedir al web o `ra2.html` per consultar directament el RA2.
