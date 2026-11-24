@@ -36,7 +36,12 @@ body.light .topbar{background:rgba(255,255,255,.82)}
 .top-actions{display:flex;gap:8px}
 .icon-btn,.menu-btn{border:1px solid var(--line);background:var(--surface);color:var(--text);width:40px;height:40px;border-radius:11px;font-size:20px}
 .menu-btn{display:none}
-.sidebar{position:fixed;z-index:40;left:0;top:0;bottom:0;width:var(--sidebar);background:linear-gradient(180deg,#071b29 0%,#06131d 100%);border-right:1px solid var(--line);padding:27px 18px 18px;display:flex;flex-direction:column}
+.sidebar{position:fixed;z-index:40;left:0;top:0;bottom:0;width:var(--sidebar);height:100vh;height:100dvh;background:linear-gradient(180deg,#071b29 0%,#06131d 100%);border-right:1px solid var(--line);padding:27px 18px 18px;display:flex;flex-direction:column;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#28546a transparent}
+.sidebar::-webkit-scrollbar{width:7px}
+.sidebar::-webkit-scrollbar-thumb{background:#28546a;border-radius:99px}
+.course-title{flex:0 0 auto}
+.main-nav{flex:0 0 auto;min-height:min-content;padding-bottom:12px}
+.sidebar-footer{flex:0 0 auto;margin-top:12px}
 .course-title{padding:18px 13px 22px}
 .course-title h1{font-family:"Space Grotesk",sans-serif;line-height:1.05;font-size:25px;margin:8px 0}
 .course-title p{color:var(--muted);font-size:12px;margin:0}
@@ -545,11 +550,8 @@ body{font-size:calc(1em * var(--text-scale));}
 .mock-title{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:10px 14px;background:#1a2c3c;border-bottom:1px solid #344658;color:#dce9f5}.mock-title>span:first-child{color:#f18b7b;letter-spacing:3px}.mock-title b{font-family:inherit;font-size:12px}.mock-toolbar{padding:8px 12px;background:#253a4c;border-bottom:1px solid #3b5060;font-size:10px;white-space:nowrap;overflow:hidden}.mock-workarea{display:grid;grid-template-columns:31% 69%;min-height:220px}.mock-explorer{padding:12px;background:#162634;border-right:1px solid #344658;font-size:10px}.mock-explorer>b,.mock-bottom b{display:block;color:#a7d8ef;margin-bottom:10px}.mock-tree{margin:9px 0 0 10px;color:#aebfce;line-height:2}.mock-editor{background:#101a25;min-width:0}.mock-tab{padding:7px 12px;background:#23394b;border-bottom:1px solid #344658;font-size:10px}.mock-editor pre{margin:0;padding:15px;overflow:auto;color:#d8e6f3;font-size:11px;line-height:1.9}.mock-editor .code-key{color:#7ecbff}.mock-editor .code-string{color:#a5dc8a}.mock-line{padding:5px 12px;background:rgba(255,206,90,.14);border-left:3px solid #ffce5a;font-size:10px}.mock-bottom{display:grid;grid-template-columns:1fr 1fr 1fr;background:#192b3b;border-top:1px solid #344658}.mock-bottom>div{padding:10px;border-right:1px solid #344658}.mock-bottom p{margin:0;color:#b8c9d8;font-size:10px}.caption-note{font-size:11px;color:var(--muted);text-align:center;margin:0 0 24px}.debug-flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;align-items:center;gap:9px;margin:22px 0}.debug-flow>div{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px;min-height:112px}.debug-flow span{display:block;color:var(--cyan);font-weight:800;font-size:10px}.debug-flow b{display:block;font-size:12px;margin:7px 0}.debug-flow small{display:block;color:var(--muted);font-size:10px;line-height:1.5}.debug-flow>i{font-style:normal;color:var(--cyan)}.code-window{margin:20px 0;border:1px solid var(--line);border-radius:13px;overflow:hidden;background:#07131d}.code-window-head{display:flex;justify-content:space-between;padding:10px 14px;background:#10283a;border-bottom:1px solid rgba(90,190,225,.18);color:#a9c5d5;font-size:10px}.code-window pre{margin:0;padding:16px;overflow:auto;color:#e5f3fa;font-size:12px;line-height:1.9}.line-no{display:inline-block;width:26px;color:#64869a;user-select:none}.breakpoint-line{background:rgba(239,86,86,.16);border-left:3px solid #ff6b6b;color:#ffd0d0;padding-left:4px}.debugger-demo{grid-template-columns:1fr 1fr;align-items:center}.debugger-demo>div:first-child{grid-column:1/-1}.debug-sim-code{padding:13px;background:#07131d;border:1px solid var(--line);border-radius:10px;overflow-wrap:anywhere}.debug-sim-code code{color:#a9dcff;font-size:12px}.debug-state{display:grid;grid-template-columns:1fr 1fr;gap:6px 12px;font-size:11px}.debug-state span{color:var(--muted)}.debug-state strong{font-size:11px;color:var(--cyan)}kbd{display:inline-block;border:1px solid var(--line);border-bottom-width:2px;border-radius:5px;padding:1px 5px;font-size:.85em;background:var(--surface-2);color:var(--text)}
 @media(max-width:780px){.debug-flow{grid-template-columns:1fr}.debug-flow>i{transform:rotate(90deg);text-align:center}.mock-workarea{grid-template-columns:1fr}.mock-explorer{border-right:0;border-bottom:1px solid #344658}.mock-bottom{grid-template-columns:1fr}.mock-bottom>div{border-bottom:1px solid #344658}.debugger-demo{grid-template-columns:1fr}.debugger-demo>div:first-child{grid-column:auto}}
 
-/* Captures reals d'Eclipse 2025-06 utilitzat a classe */
-.eclipse-screenshot { margin: 1.5rem 0; padding: .85rem; border: 1px solid var(--border, #dbe4ee); border-radius: 14px; background: var(--card, #fff); }
-.eclipse-screenshot img { display: block; width: 100%; height: auto; border-radius: 8px; }
-.eclipse-screenshot figcaption { margin-top: .7rem; font-size: .9rem; line-height: 1.55; color: var(--muted, #536274); }
-.table-wrap { width: 100%; overflow-x: auto; margin: 1rem 0; }
-.table-wrap table { width: 100%; border-collapse: collapse; min-width: 560px; }
-.table-wrap th, .table-wrap td { padding: .8rem; border: 1px solid var(--border, #dbe4ee); text-align: left; vertical-align: top; }
-.table-wrap th { background: var(--surface, #eef4fa); }
+/* Navegació lateral: permet desplaçar-se per tots els apartats encara que no càpiguen a la pantalla */
+.sidebar{overflow-x:hidden;overflow-y:auto; -webkit-overflow-scrolling:touch}
+.sidebar .main-nav{width:100%}
+.sidebar .nav-link{min-height:40px;white-space:normal}
+.topic[id]{scroll-margin-top:90px}

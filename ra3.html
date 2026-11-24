@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="RA3 · Desenvolupament guiat per proves, proves unitàries i JUnit amb Java i Eclipse.">
+  <title>RA3 · Desenvolupament guiat per proves</title><link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="index.html"><span class="brand-mark">&lt;/&gt;</span><span><strong>ENTORNS</strong><small>DE DESENVOLUPAMENT · DAW</small></span></a>
+  <div class="top-actions"><button class="icon-btn menu-btn" id="menuBtn" aria-label="Obrir menú" aria-expanded="false">☰</button><button class="icon-btn" id="themeBtn" aria-label="Canviar tema">◐</button><button class="font-btn" id="fontDown" aria-label="Reduir mida del text">A−</button><button class="font-btn" id="fontUp" aria-label="Augmentar mida del text">A+</button></div>
+  <div class="topbar-title">RA3 · Desenvolupament guiat per proves</div>
+</header>
+<aside class="sidebar" id="sidebar">
+  <div class="course-title"><span class="eyebrow">M05 · DAW</span><h1>Entorns de<br>desenvolupament</h1><p>Desenvolupament guiat per proves</p></div>
+  <nav class="main-nav" aria-label="Navegació principal">
+    <a class="nav-link" href="index.html">⌂ <span>Inici</span></a><div class="nav-heading">Resultats d’aprenentatge</div>
+      <a class="nav-link" href="ra1.html"><span class="ra-badge">RA1</span><span>Desenvolupament de programari</span></a>
+      <a class="nav-link" href="ra2.html"><span class="ra-badge">RA2</span><span>Entorns de desenvolupament</span></a>
+      <a class="nav-link active" href="ra3.html"><span class="ra-badge">RA3</span><span>Desenvolupament guiat per proves</span></a>
+      <div class="nav-heading">RA3 · Continguts</div>
+    <a class="nav-link section-link" href="#tdd"><span>01</span><span>TDD i proves unitàries</span></a>
+    <a class="nav-link section-link" href="#junit"><span>02</span><span>JUnit i configuració</span></a>
+    <a class="nav-link section-link" href="#api"><span>03</span><span>Anotacions i assertions</span></a>
+    <a class="nav-link section-link" href="#crear"><span>04</span><span>Crear i executar tests</span></a>
+    <a class="nav-link section-link" href="#exemples"><span>05</span><span>Exemples pràctics</span></a>
+    <a class="nav-link section-link" href="#suite"><span>06</span><span>Test suites i regressió</span></a>
+    <a class="nav-link section-link" href="#web"><span>07</span><span>Proves d'aplicacions web</span></a>
+    <a class="nav-link section-link" href="#resum"><span>08</span><span>Repàs</span></a>
+  </nav><div class="sidebar-footer"><span>RA3 · Java · JUnit</span><span>Eclipse 2025-06</span></div>
+</aside>
+<main class="main">
+  <section class="hero ra-hero"><div><span class="pill">RA3 · DESENVOLUPAMENT GUIAT PER PROVES</span><h2>Programar també és<br><span>comprovar que funciona.</span></h2><p class="hero-lead">Aprèn a dissenyar proves unitàries, automatitzar-les amb JUnit i detectar regressions mentre desenvolupes aplicacions Java.</p></div><div class="hero-facts"><div><strong>TDD</strong><span>provar abans de codificar</span></div><div><strong>JUnit</strong><span>proves automatitzades</span></div><div><strong>assert</strong><span>resultat esperat</span></div></div></section>
+  <div class="content-layout no-toc"><article class="content">
+    <section class="topic" id="tdd">
+      <div class="topic-head"><span class="topic-num">01</span><div><span class="eyebrow">FILOSOFIA I METODOLOGIA</span><h2>Desenvolupament guiat per proves (TDD)</h2></div></div>
+      <p>La qualitat d'una aplicació no depèn únicament que el programa s'executi. També cal comprovar que cada part fa allò que s'espera i que els canvis posteriors no trenquen funcionalitats que ja funcionaven.</p>
+      <div class="callout definition"><strong>Test-Driven Development (TDD)</strong><p>És una manera de desenvolupar en què primer es defineixen proves que descriuen el comportament esperat i després s'escriu el codi necessari perquè aquestes proves se superin. És una pràctica associada a Extreme Programming (XP).</p></div>
+      <h3>Per què necessitem proves unitàries?</h3><p>Tradicionalment, sovint es deixaven les proves per al final i es comprovava l'aplicació sencera manualment. Aquesta manera de treballar pot fer que els errors es detectin tard i que, després d'una modificació, calgui repetir moltes comprovacions manuals.</p>
+      <div class="two-col"><div class="card"><h3>Prova unitària</h3><p>Comprova una unitat petita del programa, habitualment un mètode o una classe, amb unes dades concretes i un resultat esperat.</p></div><div class="card"><h3>Prova de regressió</h3><p>Es torna a executar un conjunt de proves després d'un canvi per comprovar que les funcionalitats anteriors continuen funcionant.</p></div></div>
+      <h3>El cicle TDD</h3><div class="pipeline"><div class="pipe-step active"><b>01</b><strong>Test</strong><small>Definir el comportament</small></div><div class="pipe-arrow">→</div><div class="pipe-step"><b>02</b><strong>Red</strong><small>La prova falla</small></div><div class="pipe-arrow">→</div><div class="pipe-step"><b>03</b><strong>Green</strong><small>Fer-la passar</small></div><div class="pipe-arrow">→</div><div class="pipe-step final"><b>04</b><strong>Refactor</strong><small>Millorar el codi</small></div></div>
+      <ol><li>Es crea una prova unitària que descriu el resultat correcte esperat.</li><li>S'executen les proves: la nova ha de fallar perquè encara no s'ha implementat la funcionalitat.</li><li>S'escriu el codi mínim necessari perquè la prova passi.</li><li>Es tornen a executar totes les proves per comprovar el progrés i evitar regressions.</li><li>Es refactoritza el codi, és a dir, se'n millora l'estructura sense canviar-ne el comportament. Es repeteix el cicle.</li></ol>
+      <div class="note"><strong>Objectes simulats (mock objects)</strong><span>Quan una part del sistema depèn d'una altra que encara no està disponible o que no volem executar durant la prova, podem utilitzar objectes simulats per representar aquesta dependència.</span></div>
+      <h3>Avantatges i límits</h3><ul><li>Els errors es detecten abans i en una part concreta del codi.</li><li>Les proves es poden executar moltes vegades, de manera automàtica.</li><li>Faciliten les proves de regressió i els canvis amb més confiança.</li><li>Poden integrar-se en eines de construcció i integració contínua, com Maven.</li><li>Obliguen a pensar quin comportament ha de tenir el programa abans d'implementar-lo.</li></ul>
+      <div class="callout"><strong>Atenció: passar les proves no demostra que el programa sigui perfecte</strong><p>Només indica que el codi s'ha comportat correctament davant dels casos que hem dissenyat. Si no hem previst una situació, les proves poden no detectar-ne l'error.</p></div>
+    </section>
+
+    <section class="topic" id="junit">
+      <div class="topic-head"><span class="topic-num">02</span><div><span class="eyebrow">FRAMEWORK DE PROVES</span><h2>JUnit: què és i com funciona?</h2></div></div>
+      <p><strong>JUnit</strong> és una llibreria i un framework de Java per crear i executar proves unitàries. Va ser creat per Kent Beck i Erich Gamma i forma part de la família de projectes xUnit.</p>
+      <p>Una prova executa el mètode que volem comprovar amb unes dades d'entrada i compara el resultat obtingut amb el resultat esperat. Si coincideixen, la prova passa; si no, JUnit informa d'una fallada. També pot detectar excepcions inesperades.</p>
+      <div class="two-col"><div class="card"><h3>Test case</h3><p>És un cas de prova concret. En JUnit 5, habitualment es representa amb una classe que conté mètodes anotats amb <code>@Test</code>.</p></div><div class="card"><h3>Test suite</h3><p>És un conjunt de casos o classes de prova que es poden executar agrupats.</p></div></div>
+      <h3>Què comprova una prova?</h3><div class="code-window"><div class="code-window-head"><span>Exemple conceptual</span><span>Entrada → sortida</span></div><pre><code>Entrada:  2 i 3
+Operació: sumar(2, 3)
+Esperat:  5
+Obtingut: 5
+Resultat: PASSAT</code></pre></div>
+      <div class="callout"><strong>Versió utilitzada en aquesta teoria</strong><p>Tots els exemples d’aquesta pàgina utilitzen <strong>JUnit 5 (JUnit Jupiter)</strong>. Farem servir les anotacions i les eines actuals d’aquesta versió, sense barrejar-les amb altres models de proves.</p></div>
+      <h3>Afegir JUnit al projecte</h3><p>Eclipse ofereix assistents per crear proves i configurar la llibreria. En projectes Maven, és preferible declarar la dependència al fitxer <code>pom.xml</code>, perquè Maven la descarrega i la gestiona automàticament.</p>
+      <div class="code-window"><div class="code-window-head"><span>pom.xml · JUnit 5</span><span>Dependència de test</span></div><pre><code>&lt;dependencies&gt;
+  &lt;dependency&gt;
+    &lt;groupId&gt;org.junit.jupiter&lt;/groupId&gt;
+    &lt;artifactId&gt;junit-jupiter&lt;/artifactId&gt;
+    &lt;version&gt;5.11.4&lt;/version&gt;
+    &lt;scope&gt;test&lt;/scope&gt;
+  &lt;/dependency&gt;
+&lt;/dependencies&gt;
+
+&lt;build&gt;
+  &lt;plugins&gt;
+    &lt;plugin&gt;
+      &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+      &lt;artifactId&gt;maven-surefire-plugin&lt;/artifactId&gt;
+      &lt;version&gt;3.5.2&lt;/version&gt;
+    &lt;/plugin&gt;
+  &lt;/plugins&gt;
+&lt;/build&gt;</code></pre></div>
+      <p>Després de desar el fitxer, a Eclipse podem fer clic dret sobre el projecte i seleccionar <strong>Maven → Update Project</strong>. Maven descarregarà les dependències necessàries. En un projecte Java que no utilitza Maven, l'assistent de creació de proves de l'IDE pot afegir la biblioteca JUnit al build path.</p>
+    </section>
+
+    <section class="topic" id="api">
+      <div class="topic-head"><span class="topic-num">03</span><div><span class="eyebrow">ANOTACIONS I ASSERTIONS</span><h2>Preparar i validar les proves</h2></div></div>
+      <h3>Anotacions principals de JUnit 5</h3><div class="table-wrap"><table><thead><tr><th>Anotació</th><th>Funció</th><th>Quan s'executa?</th></tr></thead><tbody><tr><td><code>@Test</code></td><td>Identifica un mètode de prova.</td><td>Quan s'executa la classe de tests.</td></tr><tr><td><code>@BeforeEach</code></td><td>Prepara les dades o objectes necessaris.</td><td>Abans de cada test.</td></tr><tr><td><code>@AfterEach</code></td><td>Neteja o allibera recursos.</td><td>Després de cada test.</td></tr><tr><td><code>@BeforeAll</code></td><td>Prepara recursos compartits per tots els tests.</td><td>Una vegada abans de tots els tests.</td></tr><tr><td><code>@AfterAll</code></td><td>Allibera recursos compartits.</td><td>Una vegada després de tots els tests.</td></tr><tr><td><code>@Disabled</code></td><td>Desactiva temporalment un test.</td><td>El test no s'executa.</td></tr><tr><td><code>@Timeout</code></td><td>Estableix un temps màxim d'execució.</td><td>La prova falla si supera el límit.</td></tr></tbody></table></div>
+      <div class="code-window"><div class="code-window-head"><span>Exemple de preparació</span><span>JUnit 5</span></div><pre><code>import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
+
+class ExempleTest {
+    @BeforeEach
+    void setUp() {
+        System.out.println("Abans de cada test");
+    }
+
+    @AfterEach
+    void tearDown() {
+        System.out.println("Després de cada test");
+    }
+
+    @Test
+    void provaInicial() {
+        System.out.println("Executant la prova");
+    }
+}</code></pre></div>
+      <h3>Assertions: comprovar el resultat</h3><p>Les assertions són mètodes que comparen el resultat real amb la condició esperada. Si la condició no es compleix, el test falla.</p>
+      <div class="table-wrap"><table><thead><tr><th>Assertion</th><th>Què comprova?</th><th>Exemple</th></tr></thead><tbody><tr><td><code>assertEquals(esperat, actual)</code></td><td>Que dos valors siguin iguals.</td><td><code>assertEquals(5, suma(2, 3))</code></td></tr><tr><td><code>assertNotEquals(a, b)</code></td><td>Que dos valors siguin diferents.</td><td><code>assertNotEquals(0, resultat)</code></td></tr><tr><td><code>assertTrue(condicio)</code></td><td>Que una condició sigui certa.</td><td><code>assertTrue(edat &gt;= 18)</code></td></tr><tr><td><code>assertFalse(condicio)</code></td><td>Que una condició sigui falsa.</td><td><code>assertFalse(llista.isEmpty())</code></td></tr><tr><td><code>assertNull(obj)</code></td><td>Que l'objecte sigui null.</td><td><code>assertNull(resultat)</code></td></tr><tr><td><code>assertNotNull(obj)</code></td><td>Que l'objecte no sigui null.</td><td><code>assertNotNull(compte)</code></td></tr><tr><td><code>assertSame(a, b)</code></td><td>Que dues referències apuntin al mateix objecte.</td><td><code>assertSame(a, b)</code></td></tr><tr><td><code>assertNotSame(a, b)</code></td><td>Que siguin objectes diferents.</td><td><code>assertNotSame(a, b)</code></td></tr><tr><td><code>assertArrayEquals(a, b)</code></td><td>Que dos arrays tinguin els mateixos elements i ordre.</td><td><code>assertArrayEquals(a, b)</code></td></tr><tr><td><code>assertThrows(Tipus.class, executable)</code></td><td>Que s'hagi produït una excepció concreta.</td><td><code>assertThrows(IllegalArgumentException.class, ...)</code></td></tr><tr><td><code>assertDoesNotThrow(executable)</code></td><td>Que l'execució no llanci cap excepció.</td><td><code>assertDoesNotThrow(() -&gt; servei.obtenir())</code></td></tr><tr><td><code>fail("missatge")</code></td><td>Força que el test falli.</td><td><code>fail("No hauria d'arribar aquí")</code></td></tr></tbody></table></div>
+      <p>Per comparar nombres decimals amb precisió limitada, es pot indicar una tolerància (<em>delta</em>):</p><div class="code-window"><div class="code-window-head"><span>Comparació de decimals</span><span>JUnit 5</span></div><pre><code>assertEquals(0.5, resultat, 0.000001);</code></pre></div>
+      <h3>Comprovar excepcions i temps</h3><div class="code-window"><div class="code-window-head"><span>assertThrows i @Timeout</span><span>JUnit 5</span></div><pre><code>import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
+import java.util.concurrent.TimeUnit;
+
+@Test
+void dividirPerZero() {
+    assertThrows(ArithmeticException.class,
+        () -> Calculadora.dividir(10, 0));
+}
+
+@Test
+@Timeout(value = 100, unit = TimeUnit.MILLISECONDS)
+void haDeSerRapid() {
+    Calculadora.sumar(2, 3);
+}</code></pre></div>
+      <div class="note"><strong>Independència de les proves</strong><span>Un test no hauria de dependre de l'ordre d'execució ni dels resultats d'un altre test. Cada prova ha de preparar les seves pròpies dades i deixar el sistema en un estat controlat.</span></div>
+    </section>
+
+    <section class="topic" id="crear">
+      <div class="topic-head"><span class="topic-num">04</span><div><span class="eyebrow">ECLIPSE 2025-06 · 4.36.0</span><h2>Crear i executar una prova a Eclipse</h2></div></div>
+      <p>Partim d'un projecte Java que conté la classe que volem provar. A continuació crearem una classe de test separada i l'executarem des d'Eclipse.</p>
+      <ol><li>Selecciona la classe que vols provar dins de <strong>Package Explorer</strong>.</li><li>Obre <strong>File → New → JUnit Test Case</strong>. També pots fer clic dret al paquet i seleccionar <strong>New → JUnit Test Case</strong>.</li><li>Indica el nom de la classe de prova, normalment el nom de la classe original acabat en <code>Test</code> (per exemple, <code>CalculadoraTest</code>).</li><li>Selecciona la versió de JUnit adequada (JUnit 5/Jupiter per als exemples actuals) i prem <strong>Next</strong> o <strong>Finish</strong>.</li><li>Si Eclipse indica que cal afegir la biblioteca JUnit, accepta-ho si el projecte no la té configurada. En projectes Maven, comprova que la dependència existeix al <code>pom.xml</code>.</li><li>Afegeix els mètodes anotats amb <code>@Test</code> i les assertions corresponents.</li><li>Desa el fitxer i comprova que no hi hagi errors de compilació a la vista <strong>Problems</strong>.</li><li>Fes clic dret sobre la classe de test i selecciona <strong>Run As → JUnit Test</strong>.</li></ol>
+      <div class="callout"><strong>Important: Errors i fallades no són el mateix</strong><p>Un error de compilació (per exemple, un import incorrecte) impedeix executar el test. Una fallada (<em>failure</em>) vol dir que el test sí que s'ha executat, però una assertion no s'ha complert. Un error d'execució (<em>error</em>) acostuma a indicar una excepció inesperada.</p></div>
+      <h3>Guia visual de la interfície</h3><p>Les imatges següents són <strong>esquemes didàctics de la interfície</strong>, no captures reals d'una instal·lació d'Eclipse. Els noms i la disposició poden variar lleugerament segons la perspectiva i la configuració de l'IDE.</p>
+      <div class="eclipse-mock" role="img" aria-label="Esquema d'Eclipse amb el menú New JUnit Test Case"><div class="mock-title"><span>● ● ●</span><b>Eclipse IDE · Java</b><span>2025-06</span></div><div class="mock-toolbar">File　 Edit　 Source　 Refactor　 Navigate　 Search　 Project　 Run　 Window　 Help</div><div class="mock-workarea"><div class="mock-explorer"><b>Package Explorer</b><div>▾ Calculadora</div><div class="mock-tree">▾ src/main/java<br>　 Calculadora.java<br>▾ src/test/java<br>　 <span class="mock-highlight">New → JUnit Test Case</span></div></div><div class="mock-editor"><div class="mock-tab">Calculadora.java</div><pre><code>public class Calculadora {
+  public int sumar(int a, int b) {
+    return a + b;
+  }
+}</code></pre></div></div><div class="mock-bottom"><div><b>Problems</b><p>0 errors · 0 warnings</p></div><div><b>Console</b><p>Ready</p></div></div></div><p class="caption-note">1. Selecciona el projecte o paquet i obre l'assistent «New → JUnit Test Case».</p>
+      <div class="eclipse-mock" role="img" aria-label="Esquema del diàleg New JUnit Test Case"><div class="mock-title"><span>● ● ●</span><b>New JUnit Test Case</b><span>Wizard</span></div><div style="padding:18px;background:#f8fafc;color:#263445;font:13px Arial"><b>JUnit Test Case</b><p style="color:#526173">Create a new JUnit test case.</p><div style="display:grid;grid-template-columns:130px 1fr;gap:10px;align-items:center"><span>Source folder:</span><div style="border:1px solid #cbd5e1;padding:7px;background:white">Calculadora/src/test/java</div><span>Package:</span><div style="border:1px solid #cbd5e1;padding:7px;background:white">com.exemple</div><span>Name:</span><div style="border:1px solid #0ea5e9;padding:7px;background:white">CalculadoraTest</div><span>Class under test:</span><div style="border:1px solid #cbd5e1;padding:7px;background:white">Calculadora</div><span>JUnit version:</span><div style="border:1px solid #cbd5e1;padding:7px;background:white">JUnit 5</div></div><p style="margin-top:18px;color:#526173">☑ setUp methods　☐ tearDown methods</p><div style="text-align:right;border-top:1px solid #dbe3ec;padding-top:12px">[ Back ]　[ Next ]　<strong style="background:#1676c5;color:white;padding:7px 18px;border-radius:3px">Finish</strong></div></div></div><p class="caption-note">2. Escriu el nom de la classe de test, selecciona JUnit 5 i finalitza l'assistent.</p>
+      <div class="eclipse-mock" role="img" aria-label="Esquema de la vista JUnit amb barra verda i proves superades"><div class="mock-title"><span>● ● ●</span><b>Eclipse · JUnit</b><span>Run</span></div><div style="padding:13px;background:#fff;color:#1e293b;font:13px Arial"><div style="display:flex;justify-content:space-between;margin-bottom:8px"><b>JUnit</b><span>Runs: 2/2　Errors: 0　Failures: 0</span></div><div style="height:12px;background:#16a34a;border-radius:3px;margin-bottom:12px"></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:12px"><div style="border:1px solid #dbe3ec;padding:10px"><b>CalculadoraTest</b><p>✓ sumarDosPositius()</p><p>✓ sumarAmbZero()</p></div><div style="border:1px solid #dbe3ec;padding:10px"><b>Failure Trace</b><p style="color:#64748b">No failures detected.</p></div></div></div></div><p class="caption-note">3. Quan totes les proves passen, la barra de JUnit apareix en verd. Si alguna falla, la barra es mostra en vermell i el panell indica el resultat esperat i l'obtingut.</p>
+      <div class="note"><strong>Per provocar una fallada controlada</strong><span>Canvia temporalment el valor esperat d'una assertion (per exemple, espera 6 quan la suma retorna 5), executa el test i observa el resultat. Després restaura el valor correcte.</span></div>
+    </section>
+
+    <section class="topic" id="exemples">
+      <div class="topic-head"><span class="topic-num">05</span><div><span class="eyebrow">CODI I CASOS PRÀCTICS</span><h2>Exemples de proves unitàries</h2></div></div>
+      <h3>Exemple 1. Classe i test en fitxers separats</h3><p>La classe <code>MyNumber</code> representa un nombre enter i ofereix operacions de suma i resta. La classe de prova comprova que els resultats siguin els esperats.</p>
+      <div class="code-window"><div class="code-window-head"><span>MyNumber.java</span><span>Classe que provem</span></div><pre><code>package com.test;
+
+public class MyNumber {
+    private int number;
+
+    public MyNumber(int number) {
+        this.number = number;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public MyNumber add(MyNumber another) {
+        return new MyNumber(this.number + another.number);
+    }
+
+    public MyNumber sub(MyNumber another) {
+        return new MyNumber(this.number - another.number);
+    }
+}</code></pre></div>
+      <div class="code-window"><div class="code-window-head"><span>MyNumberTest.java</span><span>JUnit 5</span></div><pre><code>package com.test;
+
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+class MyNumberTest {
+    private MyNumber number1;
+    private MyNumber number2;
+
+    @BeforeEach
+    void setUp() {
+        number1 = new MyNumber(2);
+        number2 = new MyNumber(1);
+    }
+
+    @Test
+    void sumaCorrectament() {
+        assertEquals(3, number1.add(number2).getNumber());
+    }
+
+    @Test
+    void restaCorrectament() {
+        assertEquals(1, number1.sub(number2).getNumber());
+    }
+}</code></pre></div>
+      <h3>Exemple 2. Calculadora i un error amb els decimals</h3><p>La calculadora següent treballa amb nombres enters. Això és important: en Java, si dividim dos enters, el resultat també és enter i es descarta la part decimal.</p>
+      <div class="code-window"><div class="code-window-head"><span>Calculadora.java</span><span>Classe que provem</span></div><pre><code>public class Calculadora {
+    public static int sumar(int a, int b) { return a + b; }
+    public static int restar(int a, int b) { return a - b; }
+    public static int multiplicar(int a, int b) { return a * b; }
+    public static int dividir(int a, int b) { return a / b; }
+}</code></pre></div>
+      <div class="code-window"><div class="code-window-head"><span>CalculadoraTest.java</span><span>JUnit 5</span></div><pre><code>import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+
+class CalculadoraTest {
+    @Test
+    void operacionsBasiques() {
+        assertEquals(3, Calculadora.sumar(1, 2));
+        assertEquals(1, Calculadora.restar(2, 1));
+        assertEquals(6, Calculadora.multiplicar(2, 3));
+    }
+
+    @Test
+    void divisioEntera() {
+        assertEquals(0, Calculadora.dividir(1, 2));
+    }
+
+    @Test
+    void dividirPerZeroLlançaExcepcio() {
+        assertThrows(ArithmeticException.class,
+            () -> Calculadora.dividir(1, 0));
+    }
+}</code></pre></div>
+      <div class="callout"><strong>Per què no podem esperar 0,5?</strong><p>En el codi <code>1 / 2</code>, els dos operands són enters. Per tant, Java calcula una divisió entera i retorna <code>0</code>. Si volem un resultat decimal, hem de canviar el tipus de retorn i convertir almenys un operand a <code>double</code>.</p></div>
+      <div class="code-window"><div class="code-window-head"><span>Versió amb divisió decimal</span><span>Retorn double</span></div><pre><code>public static double dividir(double a, double b) {
+    return a / b;
+}
+
+// A la classe de test:
+assertEquals(0.5, Calculadora.dividir(1, 2), 0.000001);</code></pre></div>
+      <h3>Exemple 3. Pila: setUp(), tearDown() i independència</h3><p>Una pila és una estructura LIFO (<em>Last In, First Out</em>): l'últim element que entra és el primer que surt. En aquest exemple, <code>posar()</code> afegeix elements, <code>treure()</code> n'extreu el darrer i <code>tamany()</code> retorna quants elements hi ha.</p>
+      <div class="code-window"><div class="code-window-head"><span>Pila.java</span><span>Implementació</span></div><pre><code>import java.util.ArrayList;
+import java.util.List;
+
+public class Pila {
+    private final List&lt;Object&gt; llista = new ArrayList&lt;&gt;();
+
+    public int posar(Object objecte) {
+        llista.add(objecte);
+        return tamany();
+    }
+
+    public int tamany() {
+        return llista.size();
+    }
+
+    public Object treure() {
+        if (llista.isEmpty()) return null;
+        return llista.remove(llista.size() - 1);
+    }
+}</code></pre></div>
+      <div class="code-window"><div class="code-window-head"><span>PilaTest.java</span><span>JUnit 5</span></div><pre><code>import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+class PilaTest {
+    private Pila pila;
+
+    @BeforeEach
+    void setUp() {
+        pila = new Pila();
+        pila.posar("Marisol");
+        pila.posar("Santiago");
+        pila.posar("Diego");
+        pila.posar(23);
+    }
+
+    @Test
+    void comprovaMida() {
+        assertEquals(4, pila.tamany());
+    }
+
+    @Test
+    void desapilaEnOrdreLifo() {
+        assertEquals(23, pila.treure());
+        assertEquals("Diego", pila.treure());
+        assertEquals("Santiago", pila.treure());
+        assertEquals("Marisol", pila.treure());
+        assertEquals(0, pila.tamany());
+    }
+
+    @Test
+    void treureDePilaBuidaRetornaNull() {
+        while (pila.treure() != null) { }
+        assertNull(pila.treure());
+    }
+}</code></pre></div>
+      <p><code>@BeforeEach</code> crea una pila nova i hi afegeix les dades abans de cada test. Així, <code>comprovaMida()</code> no depèn del que hagi fet <code>desapilaEnOrdreLifo()</code>. Cada prova comença en un estat conegut.</p>
+      <h3>Exemple 4. Compte bancari</h3><p>Podem provar diferents situacions d'un compte: consultar saldo, ingressar diners i retirar-los amb una contrasenya correcta o incorrecta i amb saldo suficient o insuficient.</p>
+      <div class="code-window"><div class="code-window-head"><span>Compte.java</span><span>Classe que provem</span></div><pre><code>public class Compte {
+    private int saldo;
+    private String contrasenya;
+
+    public Compte(int saldoInicial, String contrasenya) {
+        this.saldo = saldoInicial;
+        this.contrasenya = contrasenya;
+    }
+
+    public int diposita(int quantitat) {
+        saldo += quantitat;
+        return saldo;
+    }
+
+    public int retira(int quantitat, String clau) {
+        if (!contrasenya.equals(clau)) return -2;
+        if (saldo &lt; quantitat) return -1;
+        saldo -= quantitat;
+        return quantitat;
+    }
+
+    public int getSaldo() { return saldo; }
+}</code></pre></div>
+      <div class="code-window"><div class="code-window-head"><span>CompteTest.java</span><span>JUnit 5</span></div><pre><code>import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+class CompteTest {
+    private Compte compte;
+
+    @BeforeEach
+    void setUp() {
+        compte = new Compte(5000, "joan77");
+    }
+
+    @Test
+    void saldoInicial() {
+        assertEquals(5000, compte.getSaldo());
+    }
+
+    @Test
+    void ingressaDiners() {
+        assertEquals(5560, compte.diposita(560));
+    }
+
+    @Test
+    void contrasenyaIncorrecta() {
+        assertEquals(-2, compte.retira(200, "pere"));
+    }
+
+    @Test
+    void saldoInsuficient() {
+        assertEquals(-1, compte.retira(20000, "joan77"));
+    }
+
+    @Test
+    void retiradaCorrecta() {
+        assertEquals(250, compte.retira(250, "joan77"));
+        assertEquals(4750, compte.getSaldo());
+    }
+}</code></pre></div>
+      <div class="note"><strong>Què estem comprovant?</strong><span>Els casos cobreixen el saldo inicial, un ingrés, una contrasenya incorrecta, un saldo insuficient i una retirada vàlida. En una aplicació real també provaríem quantitats negatives, valors nuls i altres regles del negoci.</span></div>
+    </section>
+
+    <section class="topic" id="suite">
+      <div class="topic-head"><span class="topic-num">06</span><div><span class="eyebrow">AGRUPAR I AUTOMATITZAR</span><h2>Test suites i proves de regressió</h2></div></div>
+      <p>Quan el projecte creix, és habitual tenir diverses classes de prova. Una suite permet agrupar-les i executar-les com un conjunt.</p>
+      <h3>Com s’agrupen les proves?</h3><p>En els projectes Maven amb JUnit 5 no cal crear manualment una classe <em>suite</em> per executar totes les proves habituals. Maven, mitjançant el connector Surefire, localitza i executa les classes de test que segueixen les convencions de noms i configuració del projecte. També podem executar una classe concreta des d’Eclipse.</p>
+      <h3>JUnit 5 i Maven</h3><p>Amb JUnit 5, podem executar totes les proves del projecte amb l'opció <strong>Run As → Maven test</strong> o des d'un terminal amb:</p><div class="code-window"><div class="code-window-head"><span>Terminal</span><span>Maven</span></div><pre><code>mvn test</code></pre></div>
+      <p>Maven executa les proves detectades pel seu proveïdor de tests i mostra el resum. En una pipeline d'integració contínua, aquesta ordre pot formar part del procés de construcció: si una prova falla, la construcció pot marcar-se com a fallida.</p>
+      <div class="two-col"><div class="card"><h3>Failures</h3><p>La prova s'ha executat, però una assertion no ha trobat el resultat esperat.</p></div><div class="card"><h3>Errors</h3><p>Durant la prova s'ha produït una excepció inesperada o un problema que ha impedit completar-la correctament.</p></div></div>
+      <div class="callout"><strong>Proves independents</strong><p>JUnit crea el context d'execució de cada test d'acord amb el seu model. No hem de confiar que un test anterior hagi deixat preparades les dades d'un altre. Fem servir <code>@BeforeEach</code> per inicialitzar l'estat que necessitem.</p></div>
+    </section>
+
+    <section class="topic" id="web">
+      <div class="topic-head"><span class="topic-num">07</span><div><span class="eyebrow">PROVES EN APLICACIONS WEB</span><h2>JUnit i les aplicacions web</h2></div></div>
+      <p>En una aplicació web Java podem utilitzar JUnit per provar les classes i la lògica de negoci, com ara serveis, validacions, càlculs o accés a dades (si les dependències estan controlades).</p>
+      <p>Quan volem provar la navegació web, els formularis, les respostes HTTP i la interacció amb les pàgines, necessitem eines de proves d'integració o d'extrem a extrem. El material original esmenta <strong>JWebUnit</strong>, una eina orientada a provar aplicacions web. És una tecnologia antiga i convé comprovar-ne la compatibilitat abans d'utilitzar-la en projectes actuals.</p>
+      <div class="two-col"><div class="card"><h3>JUnit</h3><p>Prova unitats de codi Java: mètodes, classes i lògica de negoci.</p></div><div class="card"><h3>Proves web</h3><p>Comproven el comportament de la web: formularis, navegació, peticions, respostes i fluxos complets.</p></div></div>
+      <div class="resources"><div class="resource-head"><span class="eyebrow">DOCUMENTACIÓ</span><h3>Recursos per continuar</h3></div><a href="https://junit.org/junit5/docs/current/user-guide/" target="_blank" rel="noopener"><strong>JUnit 5 · User Guide</strong><span>Guia oficial de JUnit Jupiter i la plataforma JUnit.</span><b>↗</b></a><a href="https://maven.apache.org/surefire/maven-surefire-plugin/" target="_blank" rel="noopener"><strong>Maven Surefire Plugin</strong><span>Documentació sobre l'execució de proves amb Maven.</span><b>↗</b></a><a href="https://www.eclipse.org/downloads/packages/" target="_blank" rel="noopener"><strong>Eclipse Packages</strong><span>Paquets oficials d'Eclipse IDE.</span><b>↗</b></a><a href="https://jwebunit.sourceforge.net/index.html" target="_blank" rel="noopener"><strong>JWebUnit</strong><span>Web del projecte citat al material de referència.</span><b>↗</b></a></div>
+    </section>
+
+    <section class="topic" id="resum">
+      <div class="topic-head"><span class="topic-num">08</span><div><span class="eyebrow">IDEES CLAU</span><h2>Repàs del RA3</h2></div></div>
+      <div class="checklist"><label><input type="checkbox"> Sé explicar què és una prova unitària i què és una prova de regressió.</label><label><input type="checkbox"> Entenc el cicle TDD: test, fallada, implementació i refactorització.</label><label><input type="checkbox"> Sé explicar què és JUnit i per a què serveix.</label><label><input type="checkbox"> Sé utilitzar les anotacions de JUnit 5.</label><label><input type="checkbox"> Sé utilitzar assertions com assertEquals, assertTrue i assertThrows.</label><label><input type="checkbox"> Puc crear una classe de test i executar-la amb Eclipse.</label><label><input type="checkbox"> Sé preparar dades amb @BeforeEach i mantenir les proves independents.</label><label><input type="checkbox"> Entenc la diferència entre una fallada (failure) i un error (error).</label><label><input type="checkbox"> Sé executar les proves d'un projecte Maven amb mvn test.</label><label><input type="checkbox"> Distingeixo les proves unitàries de les proves d'una aplicació web completa.</label></div>
+      <div class="site-footer"><span>M05 · Entorns de desenvolupament</span><span>RA3 · Desenvolupament guiat per proves</span></div>
+    </section>
+  </article></div>
+</main>
+<script src="js/app.js"></script>
+</body></html>

@@ -18,9 +18,19 @@
   });
 
   // Menú mòbil
-  menuBtn?.addEventListener('click', () => sidebar?.classList.toggle('open'));
-  document.querySelectorAll('.section-link').forEach(link => {
-    link.addEventListener('click', () => sidebar?.classList.remove('open'));
+  menuBtn?.addEventListener('click', () => {
+    const isOpen = sidebar?.classList.toggle('open') ?? false;
+    menuBtn.setAttribute('aria-expanded', String(isOpen));
+    if (isOpen) {
+      const activeLink = sidebar?.querySelector('.nav-link.active');
+      activeLink?.scrollIntoView({ block: 'nearest' });
+    }
+  });
+  document.querySelectorAll('.main-nav a').forEach(link => {
+    link.addEventListener('click', () => {
+      sidebar?.classList.remove('open');
+      menuBtn?.setAttribute('aria-expanded', 'false');
+    });
   });
 
   // Cerca local de la pàgina
